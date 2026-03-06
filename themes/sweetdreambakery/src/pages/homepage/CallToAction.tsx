@@ -70,41 +70,43 @@ export default function CallToAction() {
             Whether you're looking for a classic favorite or something completely
             custom, we're here to make your sweet dreams come true.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <a 
               href="/cakes" 
-              className="cta-button-primary"
               style={{
-                background: '#C9A962',
+                backgroundColor: '#C9A962',
                 color: '#FFFFFF',
                 fontFamily: 'Inter, sans-serif',
                 fontWeight: 500,
-                fontSize: '0.6875rem',
+                fontSize: '11px',
                 letterSpacing: '0.15em',
-                textTransform: 'uppercase' as const,
-                padding: '1.125rem 2.5rem',
+                textTransform: 'uppercase',
+                padding: '16px 40px',
                 border: 'none',
                 display: 'inline-block',
-                textDecoration: 'none'
+                textDecoration: 'none',
+                lineHeight: '1',
+                boxSizing: 'border-box'
               }}
             >
               {_("Browse Our Collection")}
             </a>
             <a 
               href="/page/custom-orders" 
-              className="cta-button-secondary"
               style={{
-                background: 'transparent',
+                backgroundColor: 'transparent',
                 color: '#FFFFFF',
                 fontFamily: 'Inter, sans-serif',
                 fontWeight: 500,
-                fontSize: '0.6875rem',
+                fontSize: '11px',
                 letterSpacing: '0.15em',
-                textTransform: 'uppercase' as const,
-                padding: '1.125rem 2.5rem',
+                textTransform: 'uppercase',
+                padding: '16px 40px',
                 border: '1px solid rgba(255, 255, 255, 0.5)',
                 display: 'inline-block',
-                textDecoration: 'none'
+                textDecoration: 'none',
+                lineHeight: '1',
+                boxSizing: 'border-box'
               }}
             >
               {_("Custom Order")}
