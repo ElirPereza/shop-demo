@@ -98,7 +98,7 @@ export function Footer({ copyRight }: FooterProps) {
           className="bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px my-8"></div>
 
         <div className="flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
-          <div>{copyRight}</div>
+          <div>© {new Date().getFullYear()} Sweet Dreams Bakery. All Rights Reserved.</div>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <button className="hover:text-primary transition-colors">
               Privacy Policy
