@@ -1132,8 +1132,9 @@ footer, [class*="footer"] {
   line-height: 1.7 !important;
 }
 
-.cta-button-primary {
-  background: var(--gold) !important;
+.cta-button-primary,
+.cta-main a[href="/cakes"] {
+  background: #C9A962 !important;
   color: #FFFFFF !important;
   font-family: 'Inter', sans-serif !important;
   font-weight: 500 !important;
@@ -1146,13 +1147,14 @@ footer, [class*="footer"] {
   transition: all 0.3s ease !important;
   
   &:hover {
-    background: var(--gold-light) !important;
+    background: #D4B872 !important;
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(201, 169, 98, 0.4);
   }
 }
 
-.cta-button-secondary {
+.cta-button-secondary,
+.cta-main a[href="/page/custom-orders"] {
   background: transparent !important;
   color: #FFFFFF !important;
   font-family: 'Inter', sans-serif !important;
@@ -1161,7 +1163,7 @@ footer, [class*="footer"] {
   letter-spacing: 0.15em !important;
   text-transform: uppercase !important;
   padding: 1.125rem 2.5rem !important;
-  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
   display: inline-block !important;
   transition: all 0.3s ease !important;
   
