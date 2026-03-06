@@ -17,29 +17,35 @@ echo "PostgreSQL is ready!"
 if [ "$AUTO_INSTALL" = "true" ]; then
     echo ""
     echo "==================================="
-    echo "  Running migrations and seed..."
+    echo "  Running migrations..."
     echo "==================================="
     
-    # Run in dev mode to trigger automatic migrations and seed
+    # Run in dev mode to trigger automatic migrations
     npm run dev &
     DEV_PID=$!
     
-    # Wait for migrations and seed to complete
-    echo "Waiting for migrations and seed to complete..."
-    sleep 90
+    # Wait for migrations to complete (check for server ready)
+    echo "Waiting for migrations to complete..."
+    sleep 60
     
     # Kill dev server
     kill $DEV_PID 2>/dev/null || true
     sleep 5
     
-    echo "Migrations and seed completed!"
+    echo "Migrations completed!"
+    
+    echo ""
+    echo "==================================="
+    echo "  Seeding bakery products..."
+    echo "==================================="
+    npm run seed:bakery || echo "Seed may have already run or failed"
     
     # Create admin user
     echo ""
     echo "==================================="
     echo "  Creating admin user..."
     echo "==================================="
-    node /app/create-admin.js || true
+    node /app/create-admin.js || echo "Admin may already exist"
     
     echo ""
 fi
