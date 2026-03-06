@@ -1,13 +1,10 @@
-import { existsSync, mkdirSync } from "fs";
-import { join } from "path";
 import { insert, select } from "@evershop/postgres-query-builder";
-import { CONSTANTS } from "@evershop/evershop/lib/helpers";
-import { info, success, warning, error } from "@evershop/evershop/lib/log";
+import { info, success, warning } from "@evershop/evershop/lib/log";
 import { pool } from "@evershop/evershop/lib/postgres";
-import { downloadImage, getFilenameFromUrl } from "./imageDownloader.js";
 
 /**
- * Seed product images by downloading from GitHub raw URLs
+ * Seed product images using external URLs directly (Cloudinary)
+ * No download needed - images are served directly from Cloudinary CDN
  */
 export async function seedProductImages(
   productId: number,
@@ -18,58 +15,32 @@ export async function seedProductImages(
   for (let i = 0; i < images.length; i++) {
     const imageData = images[i];
     try {
-      let finalImageUrl = imageData.url;
+      const imageUrl = imageData.url;
+      
+      if (!imageUrl) {
+        warning(`  ⚠️  No URL provided for image ${i + 1}`);
+        continue;
+      }
 
-      // Download image if it's a remote URL
-      if (imageData.url && imageData.url.startsWith("http")) {
-        info(`  → Downloading image: ${imageData.url}`);
+      // Check if image record already exists
+      const existingImage = await select()
+        .from("product_image")
+        .where("product_image_product_id", "=", productId)
+        .and("origin_image", "=", imageUrl)
+        .load(pool);
 
-        // Get filename from URL
-        const filename = getFilenameFromUrl(imageData.url);
-
-        // Create local path - organize by SKU
-        const subPath = `catalog/${
-          Math.floor(Math.random() * (9999 - 1000)) + 1000
-        }/${Math.floor(Math.random() * (9999 - 1000)) + 1000}`;
-        const mediaDir = join(CONSTANTS.ROOTPATH, "media", subPath);
-
-        // Ensure directory exists
-        if (!existsSync(mediaDir)) {
-          mkdirSync(mediaDir, { recursive: true });
-        }
-
-        const localPath = join(mediaDir, filename);
-
-        try {
-          // Download image
-          await downloadImage(imageData.url, localPath);
-
-          // Convert to media URL
-          finalImageUrl = `/assets/${subPath}/${filename}`;
-          success(`  ✓ Downloaded and saved: ${mediaDir}`);
-          // Check if image record already exists
-          const existingImage = await select()
-            .from("product_image")
-            .where("product_image_product_id", "=", productId)
-            .and("origin_image", "=", finalImageUrl)
-            .load(pool);
-
-          if (!existingImage) {
-            // Save image URL to database
-            await insert("product_image")
-              .given({
-                product_image_product_id: productId,
-                origin_image: finalImageUrl,
-                is_main: imageData.isMain ? 1 : 0,
-              })
-              .execute(pool);
-            info(`  ✓ Added image record to database`);
-          } else {
-            info(`  → Image already exists in database`);
-          }
-        } catch (downloadErr: any) {
-          error(`  ✗ Failed to download image: ${downloadErr.message}`);
-        }
+      if (!existingImage) {
+        // Save external URL directly to database
+        await insert("product_image")
+          .given({
+            product_image_product_id: productId,
+            origin_image: imageUrl,
+            is_main: imageData.isMain ? 1 : 0,
+          })
+          .execute(pool);
+        success(`  ✓ Added image: ${imageUrl.substring(0, 60)}...`);
+      } else {
+        info(`  → Image already exists in database`);
       }
     } catch (e: any) {
       warning(`  ⚠️  Failed to process image ${i + 1}: ${e.message}`);
