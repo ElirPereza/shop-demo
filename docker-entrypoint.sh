@@ -21,19 +21,26 @@ if [ "$AUTO_INSTALL" = "true" ]; then
     echo "==================================="
     
     # Run in dev mode to trigger automatic migrations and seed
-    # EverShop detects DB_* vars and runs migrations automatically
     npm run dev &
     DEV_PID=$!
     
-    # Wait for migrations and seed to complete (check for "Compiled successfully")
+    # Wait for migrations and seed to complete
     echo "Waiting for migrations and seed to complete..."
-    sleep 60
+    sleep 90
     
     # Kill dev server
     kill $DEV_PID 2>/dev/null || true
     sleep 5
     
     echo "Migrations and seed completed!"
+    
+    # Create admin user
+    echo ""
+    echo "==================================="
+    echo "  Creating admin user..."
+    echo "==================================="
+    node /app/create-admin.js || true
+    
     echo ""
 fi
 
