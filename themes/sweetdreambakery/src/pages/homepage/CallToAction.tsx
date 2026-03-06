@@ -71,10 +71,42 @@ export default function CallToAction() {
             custom, we're here to make your sweet dreams come true.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/cakes" className="cta-button-primary">
+            <a 
+              href="/cakes" 
+              className="cta-button-primary"
+              style={{
+                background: '#C9A962',
+                color: '#FFFFFF',
+                fontFamily: 'Inter, sans-serif',
+                fontWeight: 500,
+                fontSize: '0.6875rem',
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase' as const,
+                padding: '1.125rem 2.5rem',
+                border: 'none',
+                display: 'inline-block',
+                textDecoration: 'none'
+              }}
+            >
               {_("Browse Our Collection")}
             </a>
-            <a href="/page/custom-orders" className="cta-button-secondary">
+            <a 
+              href="/page/custom-orders" 
+              className="cta-button-secondary"
+              style={{
+                background: 'transparent',
+                color: '#FFFFFF',
+                fontFamily: 'Inter, sans-serif',
+                fontWeight: 500,
+                fontSize: '0.6875rem',
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase' as const,
+                padding: '1.125rem 2.5rem',
+                border: '1px solid rgba(255, 255, 255, 0.5)',
+                display: 'inline-block',
+                textDecoration: 'none'
+              }}
+            >
               {_("Custom Order")}
             </a>
           </div>
