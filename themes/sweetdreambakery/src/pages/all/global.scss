@@ -1011,16 +1011,212 @@ footer, [class*="footer"] {
 }
 
 /* ========================================
-   GENERAL LUXURY ELEMENTS
+   OUR STORY SECTION
    ======================================== */
-
-/* Luxury "Our Story" Section */
 .page-width > div {
   h2 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-weight: 400;
+    font-family: 'Playfair Display', Georgia, serif !important;
+    font-weight: 400 !important;
+    font-size: 2.25rem !important;
+    color: var(--foreground) !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  p {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 300 !important;
+    font-size: 1rem !important;
+    line-height: 1.8 !important;
+    color: var(--muted-foreground) !important;
   }
 }
+
+/* Stats in Our Story */
+.page-width [class*="grid"] > div > div {
+  text-align: center;
+  
+  /* Stat number */
+  & > div:first-child {
+    font-family: 'Playfair Display', Georgia, serif !important;
+    font-size: 2.5rem !important;
+    font-weight: 400 !important;
+    color: var(--gold) !important;
+  }
+  
+  /* Stat label */
+  & > div:last-child {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.75rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    color: var(--muted-foreground) !important;
+    margin-top: 0.5rem !important;
+  }
+}
+
+/* ========================================
+   CTA SECTION - "READY TO ORDER"
+   ======================================== */
+main > div[class*="bg-"] {
+  background: var(--secondary) !important;
+  padding: 4rem 2rem !important;
+  text-align: center;
+  
+  h2 {
+    font-family: 'Playfair Display', Georgia, serif !important;
+    font-weight: 400 !important;
+    font-size: 2rem !important;
+    color: var(--foreground) !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  p {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 300 !important;
+    font-size: 1rem !important;
+    color: var(--muted-foreground) !important;
+    max-width: 600px;
+    margin: 0 auto 2rem !important;
+  }
+  
+  a, button {
+    background: var(--primary) !important;
+    color: #FFFFFF !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 0.6875rem !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+    padding: 1rem 2.5rem !important;
+    border: none !important;
+    display: inline-block !important;
+    
+    &:hover {
+      background: #2D2D2D !important;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(26, 26, 26, 0.2);
+    }
+  }
+}
+
+/* ========================================
+   VIEW ALL CAKES BUTTON
+   ======================================== */
+main > a[href="/cakes"],
+a[href="/cakes"]:not(nav a):not(header a):not(.slide__wrapper a):not(footer a) {
+  display: inline-block !important;
+  background: transparent !important;
+  color: var(--foreground) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 0.6875rem !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+  padding: 1rem 2.5rem !important;
+  border: 1px solid var(--foreground) !important;
+  margin: 2rem auto !important;
+  
+  &:hover {
+    background: var(--foreground) !important;
+    color: #FFFFFF !important;
+  }
+}
+
+/* ========================================
+   PRODUCT CARDS - COMPLETE STYLING
+   ======================================== */
+/* Product grid */
+[class*="product"] {
+  /* Flavor tag (Marble, Coconut, etc.) */
+  & > div > div:first-child {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.625rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    color: var(--muted-foreground) !important;
+    padding: 0.25rem 0.5rem !important;
+    border: 1px solid rgba(26, 26, 26, 0.15) !important;
+    background: transparent !important;
+  }
+}
+
+/* Product listing items */
+[class*="listing"] > div,
+.listing > div {
+  background: var(--card) !important;
+  border: 1px solid rgba(26, 26, 26, 0.06) !important;
+  transition: all 0.4s ease !important;
+  overflow: hidden;
+  
+  &:hover {
+    border-color: rgba(201, 169, 98, 0.2) !important;
+    box-shadow: 0 15px 35px rgba(26, 26, 26, 0.08) !important;
+  }
+}
+
+/* Product title in cards */
+[class*="listing"] h3,
+[class*="product"] h3 {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-weight: 500 !important;
+  font-size: 1.0625rem !important;
+  color: var(--foreground) !important;
+  line-height: 1.4 !important;
+}
+
+/* Product description in cards */
+[class*="listing"] p,
+[class*="product"] p:not([class*="price"]) {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 300 !important;
+  font-size: 0.875rem !important;
+  color: var(--muted-foreground) !important;
+  line-height: 1.6 !important;
+}
+
+/* Product price */
+[class*="listing"] [class*="price"],
+[class*="product"] [class*="price"] {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 1.125rem !important;
+  color: var(--foreground) !important;
+}
+
+/* Product action buttons container */
+[class*="listing"] > div > div:last-child,
+.listing > div > div:last-child {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem !important;
+  
+  button {
+    flex: 1;
+    background: var(--primary) !important;
+    color: #FFFFFF !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 0.625rem !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    padding: 0.75rem 1rem !important;
+    border: none !important;
+    
+    &:hover {
+      background: #2D2D2D !important;
+    }
+    
+    span {
+      color: #FFFFFF !important;
+    }
+  }
+}
+
+/* ========================================
+   GENERAL LUXURY ELEMENTS
+   ======================================== */
 
 /* Gold accent color class */
 .text-gold {
