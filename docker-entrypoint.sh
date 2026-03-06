@@ -13,24 +13,29 @@ while ! nc -z $DB_HOST $DB_PORT 2>/dev/null; do
 done
 echo "PostgreSQL is ready!"
 
-# Check if this is first run (AUTO_INSTALL=true means run migrations + seed)
-if [ "$AUTO_INSTALL" = "true" ]; then
+# Check if database is already initialized (check for 'setting' table)
+DB_INITIALIZED=$(PGPASSWORD=$DB_PASSWORD psql -h $DB_HOST -U $DB_USER -d $DB_NAME -tAc "SELECT EXISTS (SELECT FROM information_schema.tables WHERE table_name = 'setting');" 2>/dev/null || echo "f")
+
+if [ "$DB_INITIALIZED" = "t" ]; then
+    echo ""
+    echo "Database already initialized, skipping setup..."
+else
     echo ""
     echo "==================================="
-    echo "  Running migrations..."
+    echo "  First run - Running migrations..."
     echo "==================================="
     
     # Run in dev mode to trigger automatic migrations
-    npm run dev &
+    timeout 120 npm run dev &
     DEV_PID=$!
     
-    # Wait for migrations to complete (check for server ready)
-    echo "Waiting for migrations to complete..."
-    sleep 60
+    # Wait for server to be ready
+    echo "Waiting for migrations (max 90 seconds)..."
+    sleep 90
     
     # Kill dev server
     kill $DEV_PID 2>/dev/null || true
-    sleep 5
+    sleep 3
     
     echo "Migrations completed!"
     
@@ -38,19 +43,18 @@ if [ "$AUTO_INSTALL" = "true" ]; then
     echo "==================================="
     echo "  Seeding bakery products..."
     echo "==================================="
-    npm run seed:bakery || echo "Seed may have already run or failed"
+    npm run seed:bakery || echo "Seed completed or skipped"
     
     # Create admin user
     echo ""
     echo "==================================="
     echo "  Creating admin user..."
     echo "==================================="
-    node /app/create-admin.js || echo "Admin may already exist"
-    
-    echo ""
+    node /app/create-admin.js || echo "Admin created or already exists"
 fi
 
+echo ""
 echo "==================================="
-echo "  Starting production server..."
+echo "  Starting PRODUCTION server..."
 echo "==================================="
 exec npm run start

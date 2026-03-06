@@ -26,8 +26,8 @@ FROM node:20-alpine AS production
 
 WORKDIR /app
 
-# Install netcat for health checks
-RUN apk add --no-cache netcat-openbsd
+# Install netcat for health checks and psql for DB checks
+RUN apk add --no-cache netcat-openbsd postgresql-client
 
 # Copy built application
 COPY --from=builder /app ./
