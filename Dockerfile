@@ -26,8 +26,15 @@ FROM node:20-alpine AS production
 
 WORKDIR /app
 
+# Install netcat for health checks
+RUN apk add --no-cache netcat-openbsd
+
 # Copy built application
 COPY --from=builder /app ./
+
+# Copy and setup entrypoint
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
 
 # Set environment
 ENV NODE_ENV=production
@@ -35,5 +42,5 @@ ENV NODE_ENV=production
 # Expose port
 EXPOSE 3000
 
-# Start command
-CMD ["npm", "run", "start"]
+# Start with entrypoint script
+ENTRYPOINT ["/docker-entrypoint.sh"]
