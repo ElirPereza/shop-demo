@@ -70,7 +70,7 @@ export default function CallToAction() {
             Whether you're looking for a classic favorite or something completely
             custom, we're here to make your sweet dreams come true.
           </p>
-          <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
             <a 
               href="/cakes" 
               style={{
@@ -90,26 +90,6 @@ export default function CallToAction() {
               }}
             >
               {_("Browse Our Collection")}
-            </a>
-            <a 
-              href="/page/custom-orders" 
-              style={{
-                backgroundColor: 'transparent',
-                color: '#FFFFFF',
-                fontFamily: 'Inter, sans-serif',
-                fontWeight: 500,
-                fontSize: '11px',
-                letterSpacing: '0.15em',
-                textTransform: 'uppercase',
-                padding: '16px 40px',
-                border: '1px solid rgba(255, 255, 255, 0.5)',
-                display: 'inline-block',
-                textDecoration: 'none',
-                lineHeight: '1',
-                boxSizing: 'border-box'
-              }}
-            >
-              {_("Custom Order")}
             </a>
           </div>
         </div>
