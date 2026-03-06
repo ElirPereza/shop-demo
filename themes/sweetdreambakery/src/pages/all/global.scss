@@ -299,7 +299,7 @@ html .product-media-container .main-image-container .product-image {
 }
 
 main.content {
-  padding-bottom: 4rem;
+  padding-bottom: 0 !important;
 }
 .prose-base {
   @apply space-y-4;
@@ -1056,8 +1056,130 @@ footer, [class*="footer"] {
 }
 
 /* ========================================
-   CTA SECTION - "READY TO ORDER"
+   CTA SECTION - COMPLETE STYLING
    ======================================== */
+.cta-section {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Features Grid */
+.cta-features {
+  background: var(--background) !important;
+  padding: 4rem 0 !important;
+  border-top: 1px solid rgba(26, 26, 26, 0.06);
+}
+
+.cta-feature-item {
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+.cta-feature-icon {
+  color: var(--gold) !important;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  
+  svg {
+    width: 2.5rem;
+    height: 2.5rem;
+    stroke-width: 1;
+  }
+}
+
+.cta-feature-title {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-weight: 500 !important;
+  font-size: 1rem !important;
+  color: var(--foreground) !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.cta-feature-desc {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 300 !important;
+  font-size: 0.8125rem !important;
+  color: var(--muted-foreground) !important;
+  line-height: 1.6 !important;
+}
+
+/* Main CTA Block */
+.cta-main {
+  background: var(--primary) !important;
+  padding: 5rem 2rem !important;
+}
+
+.cta-heading {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-weight: 400 !important;
+  font-size: 2.5rem !important;
+  color: #FFFFFF !important;
+  margin-bottom: 1rem !important;
+  
+  @media (min-width: 768px) {
+    font-size: 3rem !important;
+  }
+}
+
+.cta-subtext {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 300 !important;
+  font-size: 1.0625rem !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+  max-width: 600px;
+  margin: 0 auto 2.5rem !important;
+  line-height: 1.7 !important;
+}
+
+.cta-button-primary {
+  background: var(--gold) !important;
+  color: #FFFFFF !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 0.6875rem !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+  padding: 1.125rem 2.5rem !important;
+  border: none !important;
+  display: inline-block !important;
+  transition: all 0.3s ease !important;
+  
+  &:hover {
+    background: var(--gold-light) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(201, 169, 98, 0.4);
+  }
+}
+
+.cta-button-secondary {
+  background: transparent !important;
+  color: #FFFFFF !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 0.6875rem !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+  padding: 1.125rem 2.5rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  display: inline-block !important;
+  transition: all 0.3s ease !important;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: #FFFFFF !important;
+  }
+}
+
+/* Remove white gaps between sections */
+main.content {
+  & > * {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+/* Legacy CTA fallback */
 main > div[class*="bg-"] {
   background: var(--secondary) !important;
   padding: 4rem 2rem !important;
@@ -1078,25 +1200,6 @@ main > div[class*="bg-"] {
     color: var(--muted-foreground) !important;
     max-width: 600px;
     margin: 0 auto 2rem !important;
-  }
-  
-  a, button {
-    background: var(--primary) !important;
-    color: #FFFFFF !important;
-    font-family: 'Inter', sans-serif !important;
-    font-weight: 500 !important;
-    font-size: 0.6875rem !important;
-    letter-spacing: 0.15em !important;
-    text-transform: uppercase !important;
-    padding: 1rem 2.5rem !important;
-    border: none !important;
-    display: inline-block !important;
-    
-    &:hover {
-      background: #2D2D2D !important;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(26, 26, 26, 0.2);
-    }
   }
 }
 
