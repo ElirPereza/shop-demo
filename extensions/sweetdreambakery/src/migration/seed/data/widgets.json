@@ -3,30 +3,38 @@
     "name": "Main menu",
     "type": "basic_menu",
     "route": ["all"],
-    "area": ["headerMiddleLeft"],
+    "area": ["headerMiddleCenter"],
     "sort_order": 1,
     "settings": {
       "menus": [
         {
-          "id": "hanhk3km0m8nt2b",
-          "url": "#",
-          "name": "Shop",
+          "id": "menu-home",
+          "url": "/",
+          "name": "Home",
           "type": "custom",
-          "uuid": "#",
-          "children": [
-            {
-              "id": "hanhk3km0m8nt2c",
-              "url": "/cakes",
-              "name": "Cakes",
-              "type": "custom",
-              "uuid": "/cakes"
-            }
-          ]
+          "uuid": "/",
+          "children": []
         },
         {
-          "id": "hanhk3km0m8nt2e",
+          "id": "menu-cakes",
+          "url": "/cakes",
+          "name": "All Cakes",
+          "type": "custom",
+          "uuid": "/cakes",
+          "children": []
+        },
+        {
+          "id": "menu-custom",
+          "url": "/page/custom-orders",
+          "name": "Custom Orders",
+          "type": "custom",
+          "uuid": "/page/custom-orders",
+          "children": []
+        },
+        {
+          "id": "menu-about",
           "url": "/page/about-us",
-          "name": "About us",
+          "name": "About",
           "type": "custom",
           "uuid": "/page/about-us",
           "children": []
@@ -49,31 +57,31 @@
       "slides": [
         {
           "id": "slide-1",
-          "image": "https://raw.githubusercontent.com/evershopcommerce/evershop/refs/heads/dev/seed/images/banner-one.jpg",
+          "image": "https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=2400&h=1200&fit=crop&q=80",
           "width": 2400,
           "height": 1200,
-          "subText": "Discover our exquisite collection of ceramic and stainless steel products",
-          "headline": "Premium Quality Products",
-          "buttonLink": "/accessories",
-          "buttonText": "Shop Now",
-          "buttonColor": "#3a3a3a"
+          "subText": "Where artistry meets indulgence — each creation is a masterpiece of flavor and elegance",
+          "headline": "Artisan Confections",
+          "buttonLink": "/cakes",
+          "buttonText": "Explore Collection",
+          "buttonColor": "#C9A962"
         },
         {
           "id": "slide-2",
-          "image": "https://raw.githubusercontent.com/evershopcommerce/evershop/refs/heads/dev/seed/images/banner-two.jpg",
+          "image": "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=2400&h=1200&fit=crop&q=80",
           "width": 2400,
           "height": 1200,
-          "subText": "Elegant designs that enhance your daily life, from morning coffee to home organization",
-          "headline": "Crafted With Care",
+          "subText": "Meticulously crafted by our master pâtissiers using the world's finest ingredients",
+          "headline": "Handcrafted Excellence",
           "buttonLink": "/cakes",
-          "buttonText": "View Collection",
-          "buttonColor": "#3a3a3a"
+          "buttonText": "View Creations",
+          "buttonColor": "#C9A962"
         }
       ],
       "autoplay": true,
       "fullWidth": true,
       "heightType": "auto",
-      "autoplaySpeed": 3000
+      "autoplaySpeed": 5000
     },
     "status": true
   },
